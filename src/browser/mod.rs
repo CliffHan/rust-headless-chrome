@@ -438,13 +438,20 @@ pub fn default_executable() -> Result<std::path::PathBuf, String> {
     #[cfg(windows)]
     {
         use crate::browser::process::get_chrome_path_from_registry;
+        use crate::browser::process::get_msedge_path_from_registry;
 
         if let Some(path) = get_chrome_path_from_registry() {
             if path.exists() {
                 return Ok(path);
             }
         }
+
+        if let Some(path) = get_msedge_path_from_registry() {
+            if path.exists() {
+                return Ok(path);
+            }
+        }
     }
 
-    Err("Could not auto detect a chrome executable".to_string())
+    Err("Could not auto detect a chrome/msedge executable".to_string())
 }
