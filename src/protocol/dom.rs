@@ -370,4 +370,18 @@ pub mod methods {
 
         type ReturnObject = EnableReturnObject;
     }
+
+    #[derive(Serialize, Debug)]
+    #[serde(rename_all = "camelCase")]
+    pub struct RemoveNode {
+        pub node_id: super::NodeId,
+    }
+    #[derive(Debug, Deserialize)]
+    #[serde(rename_all = "camelCase")]
+    pub struct RemoveNodeReturnObject {}
+    impl Method for RemoveNode {
+        const NAME: &'static str = "DOM.removeNode";
+        type ReturnObject = RemoveNodeReturnObject;
+    }
+
 }

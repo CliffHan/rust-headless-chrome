@@ -572,6 +572,13 @@ impl<'a> Element<'a> {
 
         util::extract_midpoint(result)
     }
+
+    pub fn remove_node(&self) -> Fallible<&Self> {
+        self.parent.call_method(dom::methods::RemoveNode {
+            node_id: self.node_id
+        })?;
+        Ok(self)
+    }
 }
 
 #[derive(Debug, Fail)]
